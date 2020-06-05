@@ -355,5 +355,10 @@ namespace LittleClock
                 this.Opacity = opacity;
             }
         }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Activate();
+        }
     }
 }
