@@ -21,12 +21,18 @@ namespace LittleClock
             "hh:mm:ss",     // 2
             "hh:mm",        // 3
             "HH:mm:ss",     // 4
-            "HH:mm"         // 5
+            "HH:mm",        // 5
+            "M/d ddd HH:mm"
         };
         Properties.Settings settings = Properties.Settings.Default;
         public Setting(Form1 _form1)
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Icon = Resource1.Devidol_;
+
             form = _form1;
             numericUpDown1.Value = Convert.ToDecimal(form.Opacity);
             foreach(string v in TimeFormat)
@@ -80,6 +86,8 @@ namespace LittleClock
         {
             settings.TimeFormat = TimeFormat[comboBox1.SelectedIndex];
             form.DisplayTimeFormat = TimeFormat[comboBox1.SelectedIndex];
+            form.UpdateLabel();
+            form.ResizeWindow();
         }
 
         private void numericUpDownX_ValueChanged(object sender, EventArgs e)
@@ -114,6 +122,25 @@ namespace LittleClock
             this.settings.clickThrough = this.clickThroughCheckBox.Checked;
             form.clickThrough = this.clickThroughCheckBox.Checked;
             form.updateDragableLong(!this.clickThroughCheckBox.Checked);
+        }
+
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('\r'))
+            {
+                Console.WriteLine("Enter");
+                try
+                {
+                    DateTime.Now.ToString(comboBox1.Text);
+                    settings.TimeFormat = form.DisplayTimeFormat = comboBox1.Text;
+                    form.UpdateLabel();
+                    form.ResizeWindow();
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invaild format");
+                }
+            }
         }
     }
 }

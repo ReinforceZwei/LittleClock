@@ -41,6 +41,7 @@
             this.clickThroughCheckBox = new System.Windows.Forms.CheckBox();
             this.dragableCheckBox = new System.Windows.Forms.CheckBox();
             this.onTopCheckBox = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY)).BeginInit();
@@ -54,7 +55,7 @@
             0,
             0,
             65536});
-            this.numericUpDown1.Location = new System.Drawing.Point(79, 11);
+            this.numericUpDown1.Location = new System.Drawing.Point(78, 7);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1,
             0,
@@ -79,7 +80,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 12);
             this.label1.TabIndex = 3;
@@ -98,16 +99,17 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(15, 150);
+            this.comboBox1.Location = new System.Drawing.Point(14, 139);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 7;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 177);
+            this.label2.Location = new System.Drawing.Point(12, 178);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 12);
             this.label2.TabIndex = 8;
@@ -115,7 +117,7 @@
             // 
             // numericUpDownX
             // 
-            this.numericUpDownX.Location = new System.Drawing.Point(19, 193);
+            this.numericUpDownX.Location = new System.Drawing.Point(12, 193);
             this.numericUpDownX.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -128,7 +130,7 @@
             // 
             // numericUpDownY
             // 
-            this.numericUpDownY.Location = new System.Drawing.Point(81, 193);
+            this.numericUpDownY.Location = new System.Drawing.Point(80, 193);
             this.numericUpDownY.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -142,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(79, 177);
+            this.label3.Location = new System.Drawing.Point(78, 178);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 12);
             this.label3.TabIndex = 11;
@@ -151,7 +153,7 @@
             // HideOnHoverCheckBox
             // 
             this.HideOnHoverCheckBox.AutoSize = true;
-            this.HideOnHoverCheckBox.Location = new System.Drawing.Point(13, 89);
+            this.HideOnHoverCheckBox.Location = new System.Drawing.Point(12, 79);
             this.HideOnHoverCheckBox.Name = "HideOnHoverCheckBox";
             this.HideOnHoverCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.HideOnHoverCheckBox.Size = new System.Drawing.Size(91, 16);
@@ -163,7 +165,7 @@
             // clickThroughCheckBox
             // 
             this.clickThroughCheckBox.AutoSize = true;
-            this.clickThroughCheckBox.Location = new System.Drawing.Point(13, 112);
+            this.clickThroughCheckBox.Location = new System.Drawing.Point(12, 101);
             this.clickThroughCheckBox.Name = "clickThroughCheckBox";
             this.clickThroughCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.clickThroughCheckBox.Size = new System.Drawing.Size(90, 16);
@@ -177,7 +179,7 @@
             this.dragableCheckBox.AutoSize = true;
             this.dragableCheckBox.Checked = global::LittleClock.Properties.Settings.Default.Dragable;
             this.dragableCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::LittleClock.Properties.Settings.Default, "Dragable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dragableCheckBox.Location = new System.Drawing.Point(13, 66);
+            this.dragableCheckBox.Location = new System.Drawing.Point(12, 57);
             this.dragableCheckBox.Name = "dragableCheckBox";
             this.dragableCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dragableCheckBox.Size = new System.Drawing.Size(66, 16);
@@ -192,7 +194,7 @@
             this.onTopCheckBox.Checked = global::LittleClock.Properties.Settings.Default.TopMost;
             this.onTopCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.onTopCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::LittleClock.Properties.Settings.Default, "TopMost", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.onTopCheckBox.Location = new System.Drawing.Point(13, 43);
+            this.onTopCheckBox.Location = new System.Drawing.Point(12, 35);
             this.onTopCheckBox.Name = "onTopCheckBox";
             this.onTopCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.onTopCheckBox.Size = new System.Drawing.Size(91, 16);
@@ -201,11 +203,21 @@
             this.onTopCheckBox.UseVisualStyleBackColor = true;
             this.onTopCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 124);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 12);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Time format";
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 284);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.clickThroughCheckBox);
             this.Controls.Add(this.HideOnHoverCheckBox);
             this.Controls.Add(this.label3);
@@ -243,5 +255,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox HideOnHoverCheckBox;
         private System.Windows.Forms.CheckBox clickThroughCheckBox;
+        private System.Windows.Forms.Label label4;
     }
 }

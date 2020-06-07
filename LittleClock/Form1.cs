@@ -36,16 +36,6 @@ namespace LittleClock
 
         internal Properties.Settings settings = Properties.Settings.Default;
 
-        string[] TimeFormat =
-        {
-            "hh:mm:ss tt",  // 0
-            "hh:mm tt",     // 1
-            "hh:mm:ss",     // 2
-            "hh:mm",        // 3
-            "HH:mm:ss",     // 4
-            "HH:mm"         // 5
-        };
-
         internal string DisplayTimeFormat = String.IsNullOrEmpty(Properties.Settings.Default.TimeFormat) ? "hh:mm:ss tt" : Properties.Settings.Default.TimeFormat;
 
         internal bool hideOnHover;
@@ -55,6 +45,8 @@ namespace LittleClock
         internal double opacity;
 
         private int initialStyle;
+
+        private int IHeight; // our own height for bypassing the windows height limit
 
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nIndex);
@@ -72,9 +64,9 @@ namespace LittleClock
             this.TopMost = Properties.Settings.Default.TopMost;
             this.Icon = Resource1.Devidol_;
             this.label1.Text = DateTime.Now.ToString(DisplayTimeFormat);
-            Width = label1.Width;
-            Height = 25;
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Width = label1.Width + 5;
+            Height = IHeight = 25;
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, IHeight, 20, 20));
 
             //this.BackColor = Color.White;
             //this.TransparencyKey = Color.Fuchsia;
@@ -231,7 +223,7 @@ namespace LittleClock
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.label1.Text = DateTime.Now.ToString(DisplayTimeFormat);
+            UpdateLabel();
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -359,6 +351,20 @@ namespace LittleClock
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             this.Activate();
+        }
+
+        public void ResizeWindow()
+        {
+            SizeF size = label1.CreateGraphics().MeasureString(label1.Text, label1.Font);
+            Size newSize = new Size(Convert.ToInt32(size.Width), Convert.ToInt32(size.Height));
+            newSize.Width += 10;
+            Width = newSize.Width;
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, newSize.Width, IHeight, 20, 20));
+        }
+
+        public void UpdateLabel()
+        {
+            this.label1.Text = DateTime.Now.ToString(DisplayTimeFormat);
         }
     }
 }
