@@ -1,3 +1,5 @@
+# Please see version 2 at https://github.com/ReinforceZwei/LittleClock2
+
 # LittleClock
 Simple, small, lightweight Desktop Clock
 
